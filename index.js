@@ -33,8 +33,21 @@ const fs = require('fs');
     return mapPoints;
   });
 
+  const mapDifficulties = await page.evaluate(() => {
+    const mapDifficulties = [];
+    const mapDifficultyElements = document.querySelectorAll(
+      '.list-group-item:nth-child(2)'
+    );
+    for (let i = 0; i < mapDifficultyElements.length; i++) {
+      mapDifficulties.push(mapDifficultyElements[i].innerText);
+    }
+
+    return mapDifficulties;
+  });
+
   fs.writeFileSync('mapNames.json', JSON.stringify(mapNames));
   fs.writeFileSync('mapPoints.json', JSON.stringify(mapPoints));
+  fs.writeFileSync('mapDifficulties.json', JSON.stringify(mapDifficulties));
 
   await browser.close();
 })();
