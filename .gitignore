@@ -1,5 +1,2 @@
 node_modules
-test.png
-mapNames.json
-mapPoints.json
-mapDifficulties.json
+maps.json
